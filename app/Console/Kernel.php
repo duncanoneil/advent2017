@@ -15,7 +15,9 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\Day1Puzzle1::class,
-        Commands\Day1Puzzle2::class
+        Commands\Day1Puzzle2::class,
+        Commands\Day2Puzzle1::class,
+        Commands\Day2Puzzle2::class,
     ];
 
     /**

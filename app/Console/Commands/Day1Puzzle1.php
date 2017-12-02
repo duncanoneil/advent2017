@@ -44,8 +44,7 @@ class Day1Puzzle1 extends AdventCommand
      */
     public function handle()
     {
-        $test = $this->argument('test');
-        $test = ($test !== null) ? $test : $this->default;
+        $test = $this->getTestInput('test', $this->default);
         $this->info('Input: ' . $test);
         $len = strlen($test);
 

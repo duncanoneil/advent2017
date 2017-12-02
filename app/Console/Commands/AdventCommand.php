@@ -53,4 +53,9 @@ abstract class AdventCommand extends Command
         $this->description .= 'Day '.$this->day.' Puzzle '.$this->puzzle;
         parent::__construct();
     }
+
+    public function getTestInput($key, $default) {
+        $test = $this->argument($key);
+        return ($test !== null) ? $test : $default;
+    }
 }
