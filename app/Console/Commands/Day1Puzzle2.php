@@ -1,0 +1,101 @@
+<?php
+
+namespace App\Console\Commands;
+
+/**
+ * Class Day1Puzzle2
+ * Now, instead of considering the next digit, it wants you to consider the digit halfway around the circular list.
+ *      That is, if your list contains 10 items, only include a digit in your sum if the digit 10/2 = 5 steps
+ *      forward matches it. Fortunately, your list has an even number of elements.
+
+    For example:
+
+    1212 produces 6: the list contains 4 items, and all four digits match the digit 2 items ahead.
+    1221 produces 0, because every comparison is between a 1 and a 2.
+    123425 produces 4, because both 2s match each other, but no other digit has a match.
+    123123 produces 12.
+    12131415 produces 4.
+ *
+ * @package App\Console\Commands
+ */
+class Day1Puzzle2 extends AdventCommand
+{
+    protected $day = 1;
+    protected $puzzle = 2;
+    protected $inputs = '{test?}';
+
+    protected $default = '3294199471327195994824832197564859876682638188889768298894243832665654681412886862234525991553276578641265589959178414218389329361496673991614673626344552179413995562266818138372393213966143124914469397692587251112663217862879233226763533911128893354536353213847122251463857894159819828724827969576432191847787772732881266875469721189331882228146576832921314638221317393256471998598117289632684663355273845983933845721713497811766995367795857965222183668765517454263354111134841334631345111596131682726196574763165187889337599583345634413436165539744188866156771585647718555182529936669683581662398618765391487164715724849894563314426959348119286955144439452731762666568741612153254469131724137699832984728937865956711925592628456617133695259554548719328229938621332325125972547181236812263887375866231118312954369432937359357266467383318326239572877314765121844831126178173988799765218913178825966268816476559792947359956859989228917136267178571776316345292573489873792149646548747995389669692188457724414468727192819919448275922166321158141365237545222633688372891451842434458527698774342111482498999383831492577615154591278719656798277377363284379468757998373193231795767644654155432692988651312845433511879457921638934877557575241394363721667237778962455961493559848522582413748218971212486373232795878362964873855994697149692824917183375545192119453587398199912564474614219929345185468661129966379693813498542474732198176496694746111576925715493967296487258237854152382365579876894391815759815373319159213475555251488754279888245492373595471189191353244684697662848376529881512529221627313527441221459672786923145165989611223372241149929436247374818467481641931872972582295425936998535194423916544367799522276914445231582272368388831834437562752119325286474352863554693373718848649568451797751926315617575295381964426843625282819524747119726872193569785611959896776143539915299968276374712996485367853494734376257511273443736433464496287219615697341973131715166768916149828396454638596713572963686159214116763';
+    protected $test = '';
+
+    protected $run = 0;
+    protected $sum = 0;
+
+    /**
+     * Create a new command instance.
+     */
+    public function __construct()
+    {
+
+        parent::__construct();
+    }
+
+    /**
+     * Execute the console command.
+     *
+     * @return mixed
+     */
+    public function handle()
+    {
+        $test = $this->argument('test');
+        $this->test = ($test !== null) ? $test : $this->default;
+        $this->info('Input: ' . $test);
+        $len = strlen($this->test);
+        $offset = $len / 2;
+
+        $this->info('Offset: ' . $offset);
+        //Compare all the digits
+        for ($i = 0; $i < $len / 2; $i++) {
+            $this->compare($this->getChar($i), $this->getChar($i + $offset));
+        }
+        $this->info('Output: ' . $this->sum);
+        return 0;
+    }
+
+    /**
+     * @param $pos
+     * @return bool|string
+     */
+    private function getChar($pos) {
+        $len = strlen($this->test);
+        if ($pos >= $len) {
+            return substr($this->test, ($pos - $len), 1);
+        }
+        return substr($this->test, $pos, 1);
+    }
+
+    /**
+     * Compare two integers and increment the run count
+     * @param $first
+     * @param $second
+     */
+    private function compare($first, $second)
+    {
+        $this->info('Comparing: ' . $first .' & '. $second);
+        if ($first === $second) {
+            $this->info('match');
+            $this->sumUp($first);
+        } elseif ($this->run > 0) {
+            $this->info('no match');
+        }
+    }
+
+    /**
+     * Calculate the sum at the end of a run
+     * @param $val
+     */
+    private function sumUp($val)
+    {
+        $this->info('Adding' . ($val * 2));
+        $this->sum += ($val * 2);
+    }
+}
