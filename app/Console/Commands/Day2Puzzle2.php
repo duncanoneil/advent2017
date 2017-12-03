@@ -4,7 +4,9 @@ namespace App\Console\Commands;
 
 /**
  * Class Day1Puzzle2
- * It sounds like the goal is to find the only two numbers in each row where one evenly divides the other - that is, where the result of the division operation is a whole number. They would like you to find those numbers on each line, divide them, and add up each line's result.
+ * It sounds like the goal is to find the only two numbers in each row where one evenly divides the other - that is,
+ *      where the result of the division operation is a whole number. They would like you to find those numbers on
+ *      each line, divide them, and add up each line's result.
 
     For example, given the following spreadsheet:
 
@@ -66,7 +68,6 @@ class Day2Puzzle2 extends AdventCommand
      */
     public function handle()
     {
-//[[5, 9, 2, 8],[9, 4, 7, 3],[3, 8, 6, 5]]
         $this->test = $this->getTestInput('test', $this->default);
         $this->test = json_decode('{"data": ' . $this->test . '}');
 
@@ -75,14 +76,6 @@ class Day2Puzzle2 extends AdventCommand
                 $this->info('difference: ' . $difference);
                 $this->sum += $difference;
                 $this->info(' ---- ');
-
-//            $min = min($row);
-//            $max = max($row);
-//            //$this->info('min: ' . $min);
-//            //$this->info('max: ' . $max);
-//            $difference = max($row) - min($row);
-//            $this->sum += $difference;
-//            //$this->info('difference: ' . $difference);
         }
         $this->info('Output: ' . $this->sum);
         return 0;
