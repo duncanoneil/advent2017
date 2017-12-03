@@ -30,7 +30,7 @@ abstract class AdventCommand extends Command
     /**
      * The puzzle
      *
-     * @var int
+     * @var string
      */
     protected $puzzle = 0;
 
