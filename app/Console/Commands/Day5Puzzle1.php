@@ -43,7 +43,6 @@ class Day5Puzzle1 extends AdventCommand
 
         $this->test = $this->getTestInput('test', $this->default);
         $this->prepData();
-        $this->info('Input: ' . print_r($this->test, true));
 
         while (false !== $this->evaluateMove()) {
             $this->performMove();

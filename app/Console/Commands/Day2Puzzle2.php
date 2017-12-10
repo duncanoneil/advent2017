@@ -4,20 +4,6 @@ namespace App\Console\Commands;
 
 /**
  * Class Day2Puzzle2
- * It sounds like the goal is to find the only two numbers in each row where one evenly divides the other - that is,
- *      where the result of the division operation is a whole number. They would like you to find those numbers on
- *      each line, divide them, and add up each line's result.
-
-    For example, given the following spreadsheet:
-
-    5 9 2 8
-    9 4 7 3
-    3 8 6 5
-    In the first row, the only two numbers that evenly divide are 8 and 2; the result of this division is 4.
-    In the second row, the two numbers are 9 and 3; the result is 3.
-    In the third row, the result is 2.
-    In this example, the sum of the results would be 4 + 3 + 2 = 9.
- *
  * @package App\Console\Commands
  */
 class Day2Puzzle2 extends AdventCommand
@@ -73,9 +59,9 @@ class Day2Puzzle2 extends AdventCommand
 
         foreach ($this->test->data as $row) {
                 $difference = $this->checkRow($row);
-                $this->info('difference: ' . $difference);
+//                $this->info('difference: ' . $difference);
                 $this->sum += $difference;
-                $this->info(' ---- ');
+//                $this->info(' ---- ');
         }
         $this->info('Output: ' . $this->sum);
         return 0;
@@ -85,7 +71,7 @@ class Day2Puzzle2 extends AdventCommand
     {
         foreach ($row as $value) {
             foreach ($row as $compare) {
-                $this->info('Compare: ' . $value . ' & ' . $compare);
+//                $this->info('Compare: ' . $value . ' & ' . $compare);
                 $min = min([$value, $compare]);
                 if ($min == 0) {
                     continue;

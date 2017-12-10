@@ -29,7 +29,6 @@ class Day6Puzzle1 extends AdventCommand
     public function handle()
     {
         $this->test = $this->getTestInput('test', $this->default);
-        $this->info('Input: ' . print_r($this->test, true));
         while ($this->checkStates()) {
             $this->redistributeData();
         }
@@ -60,6 +59,6 @@ class Day6Puzzle1 extends AdventCommand
             }
             $this->test[$key]++;
         }
-        $this->info('State after '.$this->result.': ' . print_r($this->test, true));
+//        $this->info('State after '.$this->result.': ' . print_r($this->test, true));
     }
 }

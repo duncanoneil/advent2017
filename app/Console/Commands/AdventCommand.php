@@ -55,7 +55,8 @@ abstract class AdventCommand extends Command
     }
 
     public function getTestInput($key, $default) {
-        $test = $this->argument($key);
-        return ($test !== null) ? $test : $default;
+        $input = ($this->argument($key) !== null) ? $this->argument($key) : $default;
+        $this->line(ucfirst($key) . ': ' . print_r($input, true));
+        return $input;
     }
 }

@@ -64,7 +64,7 @@ class Day3Puzzle1a extends AdventCommand
         $this->info('Input: ' . $this->test);
 
         $this->makeTraversalArray();
-        $this->info('Traversal Rules: ' . print_r($this->traversal, true));
+//        $this->info('Traversal Rules: ' . print_r($this->traversal, true));
         $this->traverseMemory($this->test);
 
         $distance = abs($this->memX) + abs($this->memY);
@@ -78,12 +78,12 @@ class Day3Puzzle1a extends AdventCommand
         $this->memY = 0;
         $traversalArrayPos = 0;
         $steps = 0;
-        $this->info( '1: ' . $this->memX . ', ' . $this->memY);
+//        $this->info( '1: ' . $this->memX . ', ' . $this->memY);
         for ($i = 2; $i <= $to; $i++) {
-            $this->info($i . ': ' . print_r($this->traversal[$traversalArrayPos]['transform'], true));
+//            $this->info($i . ': ' . print_r($this->traversal[$traversalArrayPos]['transform'], true));
             $this->memX += $this->traversal[$traversalArrayPos]['transform'][0];
             $this->memY += $this->traversal[$traversalArrayPos]['transform'][1];
-            $this->info($i . ': ' . $this->memX . ', ' . $this->memY);
+//            $this->info($i . ': ' . $this->memX . ', ' . $this->memY);
             if (++$steps == $this->traversal[$traversalArrayPos]['steps']) {
                 $traversalArrayPos++;
                 $steps = 0;

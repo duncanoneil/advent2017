@@ -39,7 +39,6 @@ class Day4Puzzle1 extends AdventCommand
     public function handle()
     {
         $this->test = $this->getTestInput('test', $this->default);
-        $this->info('Input: ' . $this->test);
 
         $this->prepData();
         $this->checkPhrases();

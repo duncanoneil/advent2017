@@ -4,17 +4,6 @@ namespace App\Console\Commands;
 
 /**
  * Class Day1Puzzle1
- * The captcha requires you to review a sequence of digits (your puzzle input) and find the sum of all digits
- *      that match the next digit in the list. The list is circular, so the digit after the last digit is the first
- *      digit in the list.
-
-    For example:
-
-    1122 produces a sum of 3 (1 + 2) because the first digit (1) matches the second digit and the third digit (2) matches the fourth digit.
-    1111 produces 4 because each digit (all 1) matches the next.
-    1234 produces 0 because no digit matches the next.
-    91212129 produces 9 because the only digit that matches the next one is the last digit, 9.
- *
  * @package App\Console\Commands
  */
 class Day1Puzzle1 extends AdventCommand
@@ -45,7 +34,6 @@ class Day1Puzzle1 extends AdventCommand
     public function handle()
     {
         $test = $this->getTestInput('test', $this->default);
-        $this->info('Input: ' . $test);
         $len = strlen($test);
 
         //Compare all the digits
@@ -68,12 +56,12 @@ class Day1Puzzle1 extends AdventCommand
      */
     private function compare($first, $second)
     {
-        $this->info('Comparing: ' . $first .' & '. $second);
+//        $this->info('Comparing: ' . $first .' & '. $second);
         if ($first === $second) {
-            $this->info('match');
+//            $this->info('match');
             $this->run++;
         } elseif ($this->run > 0) {
-            $this->info('no match');
+//            $this->info('no match');
             $this->sumUp($first);
         }
     }
@@ -84,7 +72,7 @@ class Day1Puzzle1 extends AdventCommand
      */
     private function sumUp($val)
     {
-        $this->info('Adding' . ($val * ($this->run)));
+//        $this->info('Adding' . ($val * ($this->run)));
         $this->sum += ($val * ($this->run));
         $this->run = 0;
     }

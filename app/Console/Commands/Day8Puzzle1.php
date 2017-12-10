@@ -32,7 +32,6 @@ class Day8Puzzle1 extends AdventCommand
     public function handle()
     {
         $this->test = $this->getTestInput('test', $this->default);
-        $this->info('Input: ' . $this->test);
         $this->prepData();
         $this->processRegister();
         $this->info('Register: ' . print_r($this->register, true));
@@ -43,7 +42,7 @@ class Day8Puzzle1 extends AdventCommand
     public function prepData()
     {
         $file = file_get_contents(dirname(__FILE__) . '/Data/'.$this->test);
-        $this->info('File: ' . print_r($file));
+//        $this->info('File: ' . print_r($file, true));
         $this->instructions = explode(PHP_EOL, $file);
     }
 
@@ -53,14 +52,14 @@ class Day8Puzzle1 extends AdventCommand
             if (empty($instruction)) {
                 continue;
             }
-            $this->info('Instruction: ' . $instruction);
+//            $this->info('Instruction: ' . $instruction);
             preg_match_all('/([\w]+) ([\w]+) ([-\d]+) if ([\w]+) ([\D]+) ([-\d]+)/', $instruction, $matches);
 
             $this->updater = $this->checkRegisterValue($matches[1][0]);
             $this->pointer = $this->checkRegisterValue($matches[4][0]);
             if ($this->checkInstruction($matches[5][0], $matches[6][0])) {
                 $check = $this->register[$this->pointer] . ' ' . $matches[5][0] . ' ' . $matches[6][0];
-                $this->info('Check: ' . $check);
+//                $this->info('Check: ' . $check);
                 $this->updateRegister($check, $matches[2][0], $matches[3][0]);
             }
         }
@@ -101,7 +100,7 @@ class Day8Puzzle1 extends AdventCommand
 
     public function updateRegister($check, $operation, $modifier)
     {
-        $this->info('Before: ' . print_r($this->register[$this->updater], true));
+//        $this->info('Before: ' . print_r($this->register[$this->updater], true));
 
         switch ($operation) {
             case 'inc':
@@ -113,6 +112,6 @@ class Day8Puzzle1 extends AdventCommand
 
         }
 
-        $this->info('After: ' . print_r($this->register[$this->updater], true));
+//        $this->info('After: ' . print_r($this->register[$this->updater], true));
     }
 }

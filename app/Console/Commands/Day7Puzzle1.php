@@ -34,7 +34,7 @@ class Day7Puzzle1 extends AdventCommand
         $this->prepData();
         $this->buildTower();
         $this->assembleTower();
-        $this->info('Tower: ' . print_r($this->tower, true));
+//        $this->info('Tower: ' . print_r($this->tower, true));
         $this->info('Result: ' . print_r(array_keys($this->tower), true));
         return 0;
     }
@@ -42,7 +42,7 @@ class Day7Puzzle1 extends AdventCommand
     public function prepData()
     {
         $file = file_get_contents(dirname(__FILE__) . '/Data/'.$this->test);
-        $this->line('File: ' . PHP_EOL . print_r($file, true));
+//        $this->line('File: ' . PHP_EOL . print_r($file, true));
         $this->data = explode(PHP_EOL, $file);
     }
 

@@ -20,7 +20,6 @@ class Day8Puzzle2 extends Day8Puzzle1
     public function handle()
     {
         $this->test = $this->getTestInput('test', $this->default);
-        $this->info('Input: ' . $this->test);
         $this->prepData();
         $this->processRegister();
         $this->info('Register: ' . print_r($this->register, true));
