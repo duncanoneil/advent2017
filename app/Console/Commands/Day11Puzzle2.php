@@ -15,6 +15,9 @@ class Day11Puzzle2 extends Day11Puzzle1
     public $distances = [];
     public $distance = 0;
     public $furthestDistance = 0;
+    public $x = 0;
+    public $y = 0;
+    public $z = 0;
 
     /**
      * Execute the console command.
@@ -27,11 +30,12 @@ class Day11Puzzle2 extends Day11Puzzle1
         $this->steps[] = $this->originalSteps[0];
         for ($i = 1; $i < count($this->originalSteps); $i++) {
             $this->steps = array_merge($this->steps, [$this->originalSteps[$i]]);
-            $this->info('Steps: ' . implode(', ', $this->steps));
+            //$this->info('Steps: ' . implode(', ', $this->steps));
             $this->processData();
-            $this->distances[$i] = count($this->steps);
-            $this->info('Steps: ' . implode(', ', $this->steps));
-            //if ($i > 30) { die(); }
+            $this->distances[$i] = $this->scoreDistance($this->steps);
+            //$this->info('Steps: ' . implode(', ', $this->steps));
+            //$this->info('Score: ' . max($this->distances));
+            //if ($i > 30) { break; }
         }
         $this->info('Puzzle 2: ' . max($this->distances));
         $this->info(str_repeat('-', 10));
@@ -73,6 +77,25 @@ class Day11Puzzle2 extends Day11Puzzle1
         }
         $this->info($this->step . ' -> ' . $this->nextStep . ' ~~ ' . $this->distance);
         return true;
+    }
+
+    public function scoreDistance($steps) {
+        $this->x = 0;
+        $this->y = 0;
+        $this->z = 0;
+        foreach ($steps as $step) {
+            switch ($step) {
+                case 'n': $this->x++; $this->z++; break;
+                case 's': $this->x--; $this->z--; break;
+                case 'ne': $this->x++; $this->y++; break;
+                case 'se': $this->z--; $this->y++; break;
+                case 'nw': $this->z++; $this->y--; break;
+                case 'sw': $this->x--; $this->y--; break;
+            }
+        }
+        //$this->info('X: ' . $this->x . ' Y: ' . $this->y . ' Z: ' . $this->z);
+        return ((abs($this->x) + abs($this->y) + abs($this->z))/2);
+        //return (abs(a.x - b.x) + abs(a.y - b.y) + abs(a.z - b.z)) / 2
     }
 
 }
