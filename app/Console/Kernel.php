@@ -42,6 +42,8 @@ class Kernel extends ConsoleKernel
         Commands\Day13Puzzle2::class,
         Commands\Day14Puzzle1::class,
         Commands\Day14Puzzle2::class,
+        Commands\Day15Puzzle1::class,
+        Commands\Day15Puzzle2::class,
     ];
 
     /**
